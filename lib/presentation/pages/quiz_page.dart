@@ -7,13 +7,14 @@ import '../blocs/quiz_state.dart';
 
 class QuizPage extends StatelessWidget {
   final QuizMode mode;
+  final String? category;
 
-  const QuizPage({super.key, required this.mode});
+  const QuizPage({super.key, required this.mode, this.category});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<QuizCubit>()..startQuiz(mode: mode),
+      create: (context) => sl<QuizCubit>()..startQuiz(mode: mode, category: category),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Quiz', style: TextStyle(color: Colors.white)),

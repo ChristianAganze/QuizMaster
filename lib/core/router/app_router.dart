@@ -14,6 +14,12 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/quiz',
       builder: (context, state) {
+        if (state.extra is Map<String, dynamic>) {
+          final params = state.extra as Map<String, dynamic>;
+          final mode = params['mode'] as QuizMode? ?? QuizMode.solo;
+          final category = params['category'] as String?;
+          return QuizPage(mode: mode, category: category);
+        }
         final mode = state.extra as QuizMode? ?? QuizMode.solo;
         return QuizPage(mode: mode);
       },
